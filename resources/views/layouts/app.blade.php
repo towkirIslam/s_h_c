@@ -34,7 +34,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a href="" class="nav-link">Users</a>
+                            <a href="{{ route('admin.users') }}" class="nav-link">Admins</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('hospital.owners') }}" class="nav-link">Hospital Owners</a>
                         </li>
                     </ul>
 
@@ -81,5 +84,7 @@
             @yield('content')
         </main>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @yield('footer_script')
 </body>
 </html>
