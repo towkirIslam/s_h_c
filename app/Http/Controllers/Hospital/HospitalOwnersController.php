@@ -20,6 +20,9 @@ class HospitalOwnersController extends Controller
     public function insert(RequestsHospitalOwner $request)
     {
 
+        echo $request->hidden_id;
+        exit();
+
         if($request->confirm_password != $request->password){
             return back()->with('pass_error', 'Confirm Pasword did not match');
         }
@@ -39,4 +42,21 @@ class HospitalOwnersController extends Controller
         HospitalOwner::find($id)->delete();
         return back()->with('delete_owner','Hospital Owner Removed Successfully');
     }
+
+
+    public function update(Request $request)
+    {
+        $id = $request->hidden_id;
+        $hospitalowner = HospitalOwner::where('id', $id)->first();
+        $hospitalowner->name = $request->name;
+        $hospitalowner->nid = $request->nid;
+        if($request->password != $request->confirm_password){
+            return back();
+        }
+        $hospitalowner->password = $request->password;
+        $hospitalowner->save();
+        return back();
+
+    }
+
 }

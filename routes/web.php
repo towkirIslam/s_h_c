@@ -22,3 +22,5 @@ Route::get('/admin/users/{id}', [AdminController::class, 'delete'])->name('admin
 Route::get('/hospital/owners', [HospitalOwnersController::class, 'index'])->name('hospital.owners');
 Route::post('/hospital/owners/insert', [HospitalOwnersController::class, 'insert'])->name('hospital.owners.insert');
 Route::get('/hospital/owners/delete/{id}', [HospitalOwnersController::class, 'delete'])->name('hospital.owners.delete');
+Route::post('/hospital/owners/update', [HospitalOwnersController::class, 'update'])->name('hospital.owners.update');
+
