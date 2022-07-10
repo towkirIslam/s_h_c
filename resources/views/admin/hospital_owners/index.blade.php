@@ -64,6 +64,15 @@
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
                         </div>
+
+                        <div class="mt-3" id="old_pass_update">
+                            <label for="" class="form-label">Old Password</label>
+                            <input type="password" class="form-control" name="old_pass" id="Old_pass" value="">
+                            @error('old_pass')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+
                         <div class="mt-3">
                             <label for="" class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" id="Password" value="">
@@ -115,12 +124,25 @@
     </script>
 @endif
 
+
+
 @if (session('pass_error'))
     <script>
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: '{{ session('pass_error') }}',
+
+        })
+    </script>
+@endif
+
+@if (session('update_old_pass_errr'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '{{ session('update_old_pass_errr') }}',
 
         })
     </script>
@@ -158,6 +180,8 @@
 
 <script>
     $(document).ready(function() {
+
+        $("#old_pass_update").hide();
         $("#UpdateRegisterButton").hide();
         $(".edit__information").click(function(e){
             e.preventDefault();
@@ -169,6 +193,7 @@
         $("#Id_OwnerNid").val(OwnerNid);
         $("#RegisterButton").hide();
         $("#UpdateRegisterButton").show();
+        $("#old_pass_update").show();
         $('#SubmitForm').attr('action', "{{ route('hospital.owners.update') }}");
 
 });
@@ -177,5 +202,3 @@
 </script>
 
 @endsection
-
-{{-- href="{{ route('hospital.owners.delete', $owner->id) }}" --}}
