@@ -17,6 +17,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Admins
 Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.users');
 Route::get('/admin/users/{id}', [AdminController::class, 'delete'])->name('admin.users.delete');
+Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+Route::post('/profile/name', [AdminController::class, 'name'])->name('admin.profile.name');
+Route::post('/profile', [AdminController::class, 'password'])->name('admin.profile.password');
 
 
 // Hospital Owner

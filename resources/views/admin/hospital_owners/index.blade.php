@@ -29,8 +29,8 @@
                                     <td>{{ $owner->nid }}</td>
                                     <td>{{ $owner->created_at->diffforHumans() }}</td>
                                     <td>
-                                        <a type="button" class="btn btn-primary edit__information" data__id="{{ $owner->id }}" data__owner__name="{{ $owner->name }}"  data__nid="{{ $owner->nid }}"><i class="fa fa-pencil"></i></a>
-                                        <button name="{{ route('hospital.owners.delete', $owner->id) }}" class="btn btn-danger delete"><i class="fa fa-trash"></i></button>
+                                        <a type="button" class="btn btn-primary edit__information shadow btn-xs sharp mr-1" data__id="{{ $owner->id }}" data__owner__name="{{ $owner->name }}"  data__nid="{{ $owner->nid }}"><i class="fa fa-pencil"></i></a>
+                                        <button name="{{ route('hospital.owners.delete', $owner->id) }}" class="btn btn-danger delete shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
