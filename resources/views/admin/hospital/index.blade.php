@@ -3,43 +3,6 @@
 
 <div class="container">
     <div class="row">
-        {{-- <div class="col-lg-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Hospital Owner List</h3>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>SL</th>
-                                <th>Added By</th>
-                                <th>Owner Name</th>
-                                <th>Owner NID</th>
-                                <th>Created at</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($owners as $key=> $owner)
-                                <tr>
-                                    <td>{{ $owners->firstitem()+$key }}</td>
-                                    <td>{{ $owner->rel_to_admin->name }}</td>
-                                    <td>{{ $owner->name }}</td>
-                                    <td>{{ $owner->nid }}</td>
-                                    <td>{{ $owner->created_at->diffforHumans() }}</td>
-                                    <td>
-                                        <a type="button" class="btn btn-primary edit__information shadow btn-xs sharp mr-1" data__id="{{ $owner->id }}" data__owner__name="{{ $owner->name }}"  data__nid="{{ $owner->nid }}"><i class="fa fa-pencil"></i></a>
-                                        <button name="{{ route('hospital.owners.delete', $owner->id) }}" class="btn btn-danger delete shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $owners->links() }}
-                </div>
-            </div>
-        </div> --}}
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
@@ -49,6 +12,7 @@
                 <div class="card-body">
                     <form id="SubmitForm" action="{{ route('hospital.insert') }}" method="post">
                         @csrf
+                        <input type="hidden" id="Id_InformationId" name="hidden_id" value="">
                         <div class="mt-3">
                             <label for="" class="form-label">Owner Name</label>
                             <select name="owner_name" id="" class="form-control">
@@ -84,6 +48,47 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Hospital Owner List</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Added By</th>
+                                <th>Hospital Name</th>
+                                <th>Hospital Id</th>
+                                <th>Owner Name</th>
+                                <th>Created at</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($hospitals as $key=> $hospital)
+                                <tr>
+                                    <td>{{ $hospitals->firstitem()+$key }}</td>
+                                    <td>{{ $hospital->rel_to_admin->name }}</td>
+                                    <td>{{ $hospital->hospital_name }}</td>
+                                    <td>{{ $hospital->hospital_id }}</td>
+                                    <td>{{ $hospital->rel_hospital_owner->name }}</td>
+                                    <td>{{ $hospital->created_at->diffforHumans() }}</td>
+                                    <td>
+                                        <a type="button" class="btn btn-primary edit__information shadow btn-xs sharp mr-1" data__hospital__name="{{ $hospital->hospital_name }}" data__hospital_nid="{{ $hospital->hospital_id }}"><i class="fa fa-pencil"></i></a>
+                                        <button name="{{ route('hospital.delete', $hospital->id) }}" class="btn btn-danger delete shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $hospitals->links() }}
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -113,11 +118,11 @@
 @endif
 
 
-@if (session('delete_owner'))
+@if (session('delete_msz'))
     <script>
         Swal.fire(
             'Deleted!',
-            '{{ session('delete_owner') }}',
+            '{{ session('delete_msz') }}',
             'success'
             )
     </script>
@@ -146,20 +151,18 @@
 <script>
     $(document).ready(function() {
 
-        $("#old_pass_update").hide();
         $("#UpdateRegisterButton").hide();
         $(".edit__information").click(function(e){
             e.preventDefault();
-            var InformationId = $(this).attr('data__id');
-            var OwnerName = $(this).attr('data__owner__name');
-            var OwnerNid = $(this).attr('data__nid');
-            $("#Id_InformationId").val(InformationId);
-            $("#Id_OwnerName").val(OwnerName);
-            $("#Id_OwnerNid").val(OwnerNid);
+            var HospitalNameVar = $(this).attr('data__hospital__name');
+            var HospitalIdVar = $(this).attr('data__hospital__name');
+
+            $("#HospitalName").val(HospitalNameVar);
+            $("#HospitalId").val(HospitalIdVar);
+
             $("#RegisterButton").hide();
             $("#UpdateRegisterButton").show();
-            $("#old_pass_update").show();
-            $('#SubmitForm').attr('action', "{{ route('hospital.owners.update') }}");
+            $('#SubmitForm').attr('action', "{{ route('hospital.update') }}");
         });
     });
 

@@ -15,6 +15,10 @@ class CreateHospitalsTable extends Migration
     {
         Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('owner_id')->nullable();
+            $table->string('hospital_id');
+            $table->string('hospital_name');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
         });
     }

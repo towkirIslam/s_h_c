@@ -32,4 +32,6 @@ Route::post('/hospital/owners/update', [HospitalOwnersController::class, 'update
 
 // Hospitals
 Route::get('/hospital', [HospitalController::class, 'index'])->name('hospital');
-Route::get('/hospital/insert', [HospitalController::class, 'insert'])->name('hospital.insert');
+Route::post('/hospital/insert', [HospitalController::class, 'insert'])->name('hospital.insert');
+Route::get('/hospital/delete/{id}', [HospitalController::class, 'delete'])->name('hospital.delete');
+Route::get('/hospital/update', [HospitalController::class, 'update'])->name('hospital.update');
