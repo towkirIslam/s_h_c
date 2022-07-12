@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Image;
+use Image; // run this code (composer require intervention/image)  and add (Intervention\Image\ImageServiceProvider::class) in config/app.php in providers array
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,7 +79,33 @@ class AdminController extends Controller
     }
 
 
-  
+  public function photo(Request $request)
+  {
+    $request->validate([
+        'profile_photo'=> 'image',     //'mimes:jpg,bmp,png,jpeg'
+        'profile_photo' => 'file|max:5000',
+    ]);
+
+    $uploaded_photo = $request->profile_photo;
+    $extension = $uploaded_photo->getClientOriginalExtension();
+    $filename = Auth::id().'.'.$extension;
+    if(Auth::user()->profile_photo == 'default_user.png'){
+        Image::make($uploaded_photo)->save(public_path('/uploads/admin/'.$filename));
+        $admin_photo = User::find(Auth::id());
+        $admin_photo->profile_photo = $filename;
+        $admin_photo->save();
+
+    }else{
+        $delete_from = public_path('/uploads/admin/'.Auth::user()->profile_photo);
+        unlink($delete_from);
+        Image::make($uploaded_photo)->save(public_path('/uploads/admin/'.$filename));
+        $admin_photo = User::find(Auth::id());
+        $admin_photo->profile_photo = $filename;
+        $admin_photo->save();
+
+    }
+    return back();
+  }
 
 
 }

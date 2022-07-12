@@ -77,7 +77,7 @@
         </div>
     </div>
 
-    {{-- <div class="col-lg-4">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h3>Change Photo</h3>
@@ -99,6 +99,6 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
 </div>
 @endsection

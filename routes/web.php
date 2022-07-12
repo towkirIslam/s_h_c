@@ -20,6 +20,7 @@ Route::get('/admin/users/{id}', [AdminController::class, 'delete'])->name('admin
 Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
 Route::post('/profile/name', [AdminController::class, 'name'])->name('admin.profile.name');
 Route::post('/profile', [AdminController::class, 'password'])->name('admin.profile.password');
+Route::post('/profile/photo', [AdminController::class, 'photo'])->name('admin.profile.photo');
 
 
 // Hospital Owner
