@@ -779,11 +779,15 @@
 
                     </li>
                     <li><a  href="{{ route('hospital.owners') }}">
-
                         <i class="flaticon-381-television"></i>
 							<span class="nav-text">Hospital Owners</span>
 						</a>
+                    </li>
 
+                    <li><a  href="{{ route('hospital') }}">
+                        <i class="flaticon-381-television"></i>
+							<span class="nav-text">Hospital List</span>
+						</a>
                     </li>
 
                 </ul>

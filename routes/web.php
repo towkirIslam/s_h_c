@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Hospital\HospitalController;
 use App\Http\Controllers\Hospital\HospitalOwnersController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,6 @@ Route::post('/hospital/owners/insert', [HospitalOwnersController::class, 'insert
 Route::get('/hospital/owners/delete/{id}', [HospitalOwnersController::class, 'delete'])->name('hospital.owners.delete');
 Route::post('/hospital/owners/update', [HospitalOwnersController::class, 'update'])->name('hospital.owners.update');
 
+// Hospitals
+Route::get('/hospital', [HospitalController::class, 'index'])->name('hospital');
+Route::get('/hospital/insert', [HospitalController::class, 'insert'])->name('hospital.insert');
