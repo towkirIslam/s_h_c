@@ -790,6 +790,12 @@
 						</a>
                     </li>
 
+                    <li><a  href="{{ route('doctor') }}">
+                        <i class="flaticon-381-television"></i>
+							<span class="nav-text">Doctor List</span>
+						</a>
+                    </li>
+
                 </ul>
 
 

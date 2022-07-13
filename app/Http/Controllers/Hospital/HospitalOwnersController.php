@@ -29,7 +29,7 @@ class HospitalOwnersController extends Controller
         $hospitalowner->name = $request->name;
         $hospitalowner->nid = $request->nid;
         $hospitalowner->password = $request->password;
-        $hospitalowner->confirm_password= $request->confirm_password;
+        $hospitalowner->confirm_password = $request->confirm_password;
         $hospitalowner->save();
         return back()->with('insert_success', 'Hospital Owner Registar Successfully!');
     }

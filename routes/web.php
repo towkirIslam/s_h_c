@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Doctor\DoctorControllers;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Hospital\HospitalController;
 use App\Http\Controllers\Hospital\HospitalOwnersController;
@@ -35,3 +36,8 @@ Route::get('/hospital', [HospitalController::class, 'index'])->name('hospital');
 Route::post('/hospital/insert', [HospitalController::class, 'insert'])->name('hospital.insert');
 Route::get('/hospital/delete/{id}', [HospitalController::class, 'delete'])->name('hospital.delete');
 Route::get('/hospital/update', [HospitalController::class, 'update'])->name('hospital.update');
+
+
+// Doctor
+Route::get('/doctor', [DoctorControllers::class, 'index'])->name('doctor');
+Route::post('/doctor/insert', [DoctorControllers::class, 'insert'])->name('doctors.insert');

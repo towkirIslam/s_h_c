@@ -6,37 +6,61 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h3>Register Hospital</h3>
+                    <h3>Register Doctors</h3>
                 </div>
 
                 <div class="card-body">
-                    <form id="SubmitForm" action="{{ route('hospital.insert') }}" method="post">
+                    <form id="SubmitForm" action="{{ route('doctors.insert') }}" method="post">
                         @csrf
                         <input type="hidden" id="Id_InformationId" name="hidden_id" value="">
                         <div class="mt-3">
-                            <label for="" class="form-label">Owner Name</label>
-                            <select name="owner_name" id="OwnerName" class="form-control">
-                                <option value="">-- Select Owner --</option>
-                                @foreach ($hospital_owners as $key=> $hospital_owner)
-                                    <option value="{{ $hospital_owner->id }}">{{ $hospital_owner->name }}</option>
+                            <label for="" class="form-label">Hospital Name</label>
+                            <select name="hospital_name" id="HospitalName" class="form-control">
+                                <option value="">-- Select Hospital --</option>
+                                @foreach ($hospitals as $hospital)
+                                    <option value="{{ $hospital->id }}">{{ $hospital->hospital_name }}</option>
                                 @endforeach
-
                             </select>
-                            @error('owner_name')
+                            @error('hospital_name')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
                         </div>
+
                         <div class="mt-3">
-                            <label for="" class="form-label">Hospital ID</label>
-                            <input type="text" class="form-control" name="hospital_id" id="HospitalId" value="">
-                            @error('hospital_id')
+                            <label for="" class="form-label">Doctor Name</label>
+                            <input type="text" class="form-control" name="doctor_name" id="DoctorId" value="">
+                            @error('doctor_name')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+
+                        <div class="mt-3">
+                            <label for="" class="form-label">Doctor ID</label>
+                            <input type="text" class="form-control" name="doctor_id" id="DoctorId" value="">
+                            @error('doctor_id')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
                         </div>
                         <div class="mt-3" class="form-label">
-                            <label for="">Hospital Name</label>
-                            <input type="text" class="form-control" name="hospital_name" id="HospitalName" value="" >
-                            @error('hospital_name')
+                            <label for="">Depertment</label>
+                            <input type="text" class="form-control" name="depertment" id="Depertment" value="" >
+                            @error('depertment')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+
+                        <div class="mt-3" class="form-label">
+                            <label for="">Password</label>
+                            <input type="password" class="form-control" name="password" id="Depertment" value="" >
+                            @error('password')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+
+                        <div class="mt-3" class="form-label">
+                            <label for="">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirm_password" id="Depertment" value="" >
+                            @error('confirm_password')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
                         </div>
@@ -60,31 +84,33 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Added By</th>
-                                <th>Hospital Name</th>
                                 <th>Hospital Id</th>
-                                <th>Owner Name</th>
+                                <th>Doctor Name</th>
+                                <th>Doctor Id</th>
+                                <th>Depertment</th>
                                 <th>Created at</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($hospitals as $key=> $hospital)
+                            @foreach ($dostors as $key=> $dostor)
                                 <tr>
-                                    <td>{{ $hospitals->firstitem()+$key }}</td>
-                                    <td>{{ $hospital->rel_to_admin->name }}</td>
-                                    <td>{{ $hospital->hospital_name }}</td>
-                                    <td>{{ $hospital->hospital_id }}</td>
-                                    <td>{{ $hospital->rel_hospital_owner->name }}</td>
-                                    <td>{{ $hospital->created_at->diffforHumans() }}</td>
+                                    <td>{{ $dostors->firstitem()+$key }}</td>
+                                    <td>{{ $dostor->rel_to_admin->name }}</td>
+                                    <td>{{ $dostor->rel_to_hospital->hospital_name }}</td>
+                                    <td>{{ $dostor->doctor_name }}</td>
+                                    <td>{{ $dostor->doctor_id }}</td>
+                                    <td>{{ $dostor->depertment }}</td>
+                                    <td>{{ $dostor->created_at->diffforHumans() }}</td>
                                     <td>
                                         <a type="button" class="btn btn-primary edit__information shadow btn-xs sharp mr-1" data__hospital__name="{{ $hospital->hospital_name }}" data__hospital_nid="{{ $hospital->hospital_id }}"><i class="fa fa-pencil"></i></a>
-                                        <button name="{{ route('hospital.delete', $hospital->id) }}" class="btn btn-danger delete shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></button>
+                                        <button name="" class="btn btn-danger delete shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $hospitals->links() }}
+                    {{ $dostors->links() }}
                 </div>
             </div>
         </div>
@@ -117,6 +143,16 @@
     </script>
 @endif
 
+@if (session('pass_error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '{{ session('pass_error') }}',
+
+        })
+    </script>
+@endif
 
 @if (session('delete_msz'))
     <script>
@@ -127,6 +163,8 @@
             )
     </script>
 @endif
+
+
 
 <script>
     $('.delete').click(function(){
