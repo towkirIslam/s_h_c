@@ -778,6 +778,11 @@
 						</a>
 
                     </li>
+                    <li><a  href="{{ route('admin.users') }}">
+                        <i class="flaticon-381-television"></i>
+							<span class="nav-text">Admins</span>
+						</a>
+                    </li>
                     <li><a  href="{{ route('hospital.owners') }}">
                         <i class="flaticon-381-television"></i>
 							<span class="nav-text">Hospital Owners</span>
@@ -793,6 +798,12 @@
                     <li><a  href="{{ route('doctor') }}">
                         <i class="flaticon-381-television"></i>
 							<span class="nav-text">Doctor List</span>
+						</a>
+                    </li>
+
+                    <li><a  href="{{ route('doctor') }}">
+                        <i class="flaticon-381-settings-2"></i>
+							<span class="nav-text">Appointment Settings</span>
 						</a>
                     </li>
 

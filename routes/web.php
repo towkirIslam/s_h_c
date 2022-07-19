@@ -5,6 +5,7 @@ use App\Http\Controllers\Doctor\DoctorControllers;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Hospital\HospitalController;
 use App\Http\Controllers\Hospital\HospitalOwnersController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
