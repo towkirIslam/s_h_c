@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
- 
+
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
@@ -24,7 +24,7 @@
                             @foreach ($owners as $key=> $owner)
                                 <tr>
                                     <td>{{ $owners->firstitem()+$key }}</td>
-                                    <td>{{ $owner->rel_to_admin->name }}</td>
+                                    <td>{{ $owner->name }}</td>
                                     <td>{{ $owner->name }}</td>
                                     <td>{{ $owner->nid }}</td>
                                     <td>{{ $owner->created_at->diffforHumans() }}</td>

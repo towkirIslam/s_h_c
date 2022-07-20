@@ -5,6 +5,7 @@ use App\Http\Controllers\Doctor\DoctorControllers;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Hospital\HospitalController;
 use App\Http\Controllers\Hospital\HospitalOwnersController;
+use App\Http\Controllers\Rolepermission\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,3 +43,13 @@ Route::get('/hospital/update', [HospitalController::class, 'update'])->name('hos
 // Doctor
 Route::get('/doctor', [DoctorControllers::class, 'index'])->name('doctor');
 Route::post('/doctor/insert', [DoctorControllers::class, 'insert'])->name('doctors.insert');
+
+
+// Role Manager
+Route::get('/role/manager', [RoleController::class, 'index'])->name('role.manager');
+
+// permission
+Route::post('/permission', [RoleController::class, 'permission_submit'])->name('permission.submit');
+Route::post('/role', [RoleController::class, 'role_submit'])->name('role.submit');
+Route::post('/assign/role', [RoleController::class, 'assign_role'])->name('assign.role');
+Route::get('/permission/{id}', [RoleController::class, 'edit_permission'])->name('edit.permission');

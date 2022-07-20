@@ -783,6 +783,17 @@
 							<span class="nav-text">Admins</span>
 						</a>
                     </li>
+
+                    <li>
+                        <a href="javascript:void()" class="has-arrow ai-icon" aria-expanded="false">
+                            <i class="flaticon-381-networking"></i>
+                            <span class="nav-text">Role Manager</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('role.manager') }}">User List</a></li>
+                        </ul>
+                    </li>
+
                     <li><a  href="{{ route('hospital.owners') }}">
                         <i class="flaticon-381-television"></i>
 							<span class="nav-text">Hospital Owners</span>
